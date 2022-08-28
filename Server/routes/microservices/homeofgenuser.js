@@ -112,7 +112,7 @@ console.log(e)
 
 })
 
-app.post('/giventoken/validity/available',jsonParser,(req,res)=>{
+app.post('/giventoken/validity/available',jsonParser,async(req,res)=>{
     console.log("welcome",req.url)
     console.log("list of product",req.body)
     dbconnect.connect()
@@ -166,6 +166,7 @@ async function kala(){
             
             available.push(avaiableproduct.productName)
             objectforvoucher[i].productID = avaiableproduct.productId;
+            
             objectforvoucher[i].supplierID = avaiableproduct.supplierId;
 
             
@@ -280,6 +281,7 @@ var vouchersi = {
 
 app.post('/giveninvoice/confirm',jsonParser,(req,res)=>{
     let invoicenumber=String(req.body.invoice)
+    console.log(req.body)
     console.log("log kjklk",invoicenumber)
 
     
@@ -328,8 +330,7 @@ app.post('/giveninvoice/confirm',jsonParser,(req,res)=>{
                             };
                             
                             const req = http.request(options, res => {
-                                console.log('statusCode: ${res.statusCode}');
-                            
+                               
                                 res.on('data', d => {
                                 process.stdout.write(d);
                                 });

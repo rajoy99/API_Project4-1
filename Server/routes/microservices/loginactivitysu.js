@@ -12,6 +12,7 @@ const users=require("../../MongooseScema/Schemas/person/PersonScema")
 const { connection } = require('mongoose')
 const dbconnect=require("../../MongooseOperation/connectiondb")
 const loginUser=require("../../MongooseScema/Schemas/person/login/login")
+const hash=require("../../Hash/hashCollection")
 var jsonParser = bodyParser.json()
 app.use(cors({
     origin: "*",
@@ -35,6 +36,8 @@ console.log("i am in ",req.body)
   let email=req.body.user["email"]
   console.log(email)
   let password=req.body.user["password"]
+  password=hash.hash(password)
+  console.log("email , password",email,password)
   let usertype=req.body.user["user"]
   
 

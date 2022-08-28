@@ -34,7 +34,7 @@ app.post('/userOrder/pending',jsonParser,(req,res)=>{
     payeeid=req.body.payeeID
     finding={
         payeeID:payeeid,
-        confirmation:"yes"
+        confirmation:"paid"
     }
     voucher.vouchers.find(finding).then((s)=>{
         if(s){
@@ -52,8 +52,9 @@ app.post("/user/orderRecieved",jsonParser,(req,res)=>{
         vouchernumber:invoicenumbe,
         
     }
+
     update={
-        productRecived:"yes"
+        confirmation:"recieved"
     }
     voucher.vouchers.findOneAndUpdate(finding,update).then((s)=>{
         if(s){

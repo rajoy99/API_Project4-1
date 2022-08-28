@@ -35,6 +35,7 @@ console.log("i am in ",req.body)
   let email=req.body.user["email"]
   console.log(email)
   let password=req.body.user["password"]
+  password=hashingstuff.hash(password)
   let usertype=req.body.user["user"]
   
 

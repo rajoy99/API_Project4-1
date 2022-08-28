@@ -1,4 +1,6 @@
 const mongoose =require('mongoose')
+
+
 const  userbankcredential= new mongoose.Schema({
 
     bankaccnumber:String,

@@ -50,12 +50,47 @@ var server=http.createServer(function(request,response){
         }
         update={
           
-          confirmation:"yes"
+          confirmation:"paid"
         }
-        voucher.vouchers.findOneAndUpdate(find,update).then((sucess)=>{
-          if(sucess){
 
-            console.log("succesfully update",sucess)
+        voucher.vouchers.findOneAndUpdate(find,update).then(async (sucess)=>{
+          if(sucess){
+            console.log("found and updataed ")
+            
+              for (i=0;i<sucess.details.length;i++){
+             dquantity=parseInt(sucess.details[i].quantity)
+             productId=sucess.details[i].productID 
+             productadd.productforpost.findOne({productId:productId}).then((s)=>{
+               if(s){
+                 console.log("product",)
+                 quantity=parseInt(s.available)
+                 console.log("quantity",quantity,"dquantity",dquantity)
+                 if(quantity>dquantity){
+                 newquantity=quantity-dquantity
+                 productadd.productforpost.findOneAndUpdate({productId:productId},{available:newquantity}).then((su)=>{
+                   if(su){
+                   console.log("successfully updated")
+                   }
+                 })
+                 }
+
+
+
+               }
+
+             })
+
+
+
+
+
+
+              }
+          
+            
+            
+            
+        
           }
         })
 
@@ -72,5 +107,5 @@ var server=http.createServer(function(request,response){
 
 
 })
-server.listen(9004)
+server.listen(9004,"192.168.2.104")
 
