@@ -4,7 +4,7 @@ An E-commerce website implemented by micro-services architecture. It has two dif
 suppliers. The transactions are settled by a separate banking API.
 
 
-#Intructions to run on computer : 
+# Intructions to run on computer : 
 
 1) Inside Client, go to uinterface. Run this command : "npm install"
 
